@@ -72,19 +72,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.mailer.send">module mailer.send</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.mailer.send.send">
-            function <span class="apidocSignatureSpan">mailer.</span>send
-            <span class="apidocSignatureSpan">(message, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
 </ol></div>
 
 <div class="apidocSectionDiv">
@@ -93,113 +80,6 @@
 
     <h2>
         <a href="#apidoc.element.mailer.send" id="apidoc.element.mailer.send">
-        function <span class="apidocSignatureSpan">mailer.</span>send
-        <span class="apidocSignatureSpan">(message, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function node_mail(message, callback) {
-  var server = {
-    host: message.host,
-    hostname: message.domain,
-    port: + message.port,
-    use_authentication: message.authentication,
-    ssl: message.ssl,
-    user: message.username &#x26;&#x26; message.username.toString(),
-    pass: message.password &#x26;&#x26; message.password.toString(),
-    debug: message.debug || false
-  };
-  if(message.username || message.password) {
-    pool.addClient(server.port, server.host, server);
-  }
-
-  function dispatchMail(message, server, callback) {
-      var _message = {
-          to: message.to,
-          sender: message.from,
-          subject: message.subject,
-          server: server,
-          debug: message.debug
-      };
-      if(message.html)_message.html = message.html;
-      pool.send(new EmailMessage(merge(message, _message)), callback);
-  }
-
-  // If a template was passed in as part of the message
-  if (message.template) {
-    // If the template path is in the cache
-    if (_templateCache[message.template]) {
-      // If the template is already fully loaded in the cahe
-      if (_templateCache[message.template].loaded) {
-        // Use the cached template and send the email
-        message.html = mustache.to_html(_templateCache[message.template].template, message.data);
-        dispatchMail(message, server, callback);
-      }
-      else {
-        // We&#x27;ve started to load the template, but it&#x27;s not loaded yet. queue up this message to be sent later
-        _templateCache[message.template].queue.push(message);
-      }
-    }
-    else {
-      // The template path wasn&#x27;t found in the cache, start to load the template
-      _templateCache[message.template]          = {};
-      _templateCache[message.template].loaded   = false;
-      _templateCache[message.template].template = &#x27;&#x27;;
-      _templateCache[message.template].queue    = [];
-
-      fs.readFile(message.template, function(err, result){
-        if (err) {
-          callback(err);
-          return;
-        }
-
-        _templateCache[message.template].template = result.toString();
-        _templateCache[message.template].loaded   = true;
-
-        // &#x22;Drain&#x22; the queue
-        _templateCache[message.template].queue.push(message);
-        _templateCache[message.template].queue.forEach(function(msg, i){
-          msg.html = mustache.to_html(_templateCache[message.template].template, msg.data);
-          dispatchMail(msg, server, callback);
-        });
-
-        // Clear the queue out
-        _templateCache[message.template].queue = [];
-      });
-    }
-  }
-  else { // No template being used
-    dispatchMail(message, server, callback);
-  }
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
- - SMTP Server
-
-# USAGE
-      var email = require(&#x22;../lib/node_mailer&#x22;);
-
-      for(var i = 0; i &#x3c; 10; i++){
-
-        email.<span class="apidocCodeKeywordSpan">send</span>({
-host : &#x22;localhost&#x22;,              // smtp server hostname
-port : &#x22;25&#x22;,                     // smtp server port
-		  ssl: true,						// for SSL support - REQUIRES NODE v0.3.x OR HIGHER
-domain : &#x22;localhost&#x22;,            // domain used by client to identify itself to server
-to : &#x22;marak.squires@gmail.com&#x22;,
-from : &#x22;obama@whitehouse.gov&#x22;,
-subject : &#x22;node_mailer test email&#x22;,
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.mailer.send" id="apidoc.module.mailer.send">module mailer.send</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.mailer.send.send" id="apidoc.element.mailer.send.send">
         function <span class="apidocSignatureSpan">mailer.</span>send
         <span class="apidocSignatureSpan">(message, callback)</span>
         </a>
