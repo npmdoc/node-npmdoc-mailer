@@ -160,21 +160,21 @@
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- - SMTP Server
 
-# USAGE
-      var email = require(&#x22;../lib/node_mailer&#x22;);
 
-      for(var i = 0; i &#x3c; 10; i++){
 
-        email.<span class="apidocCodeKeywordSpan">send</span>({
-host : &#x22;localhost&#x22;,              // smtp server hostname
-port : &#x22;25&#x22;,                     // smtp server port
-		  ssl: true,						// for SSL support - REQUIRES NODE v0.3.x OR HIGHER
-domain : &#x22;localhost&#x22;,            // domain used by client to identify itself to server
-to : &#x22;marak.squires@gmail.com&#x22;,
-from : &#x22;obama@whitehouse.gov&#x22;,
-subject : &#x22;node_mailer test email&#x22;,
+
+var email = require(&#x22;./lib/node_mailer&#x22;);
+
+for(var i = 0; i &#x3c; 1; i++){
+email.<span class="apidocCodeKeywordSpan">send</span>({
+  ssl: true,
+  host : &#x22;smtp.gmail.com&#x22;,              // smtp server hostname
+  port : 465,                     // smtp server port
+  domain : &#x22;[127.0.0.1]&#x22;,            // domain used by client to identify itself to server
+  to : &#x22;bradley.meck@gmail.com&#x22;,
+  from : &#x22;bradley.meck@gmail.com&#x22;,
+  subject : &#x22;node_mailer test email&#x22;,
 ...</pre></li>
     </ul>
 
