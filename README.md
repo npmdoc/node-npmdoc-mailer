@@ -1,6 +1,6 @@
 # npmdoc-mailer
 
-#### api documentation for  [mailer (v0.6.7)](https://github.com/Marak/node_mailer#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-mailer.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-mailer) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mailer.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mailer)
+#### basic api documentation for  [mailer (v0.6.7)](https://github.com/Marak/node_mailer#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-mailer.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-mailer) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mailer.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mailer)
 
 #### send emails from node.js to a smtp server, simple as cake
 
@@ -77,7 +77,8 @@
         "type": "git",
         "url": "git://github.com/Marak/node_mailer.git"
     },
-    "version": "0.6.7"
+    "version": "0.6.7",
+    "bin": {}
 }
 ```
 
